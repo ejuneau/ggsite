@@ -1,0 +1,127 @@
+html {
+  color-scheme: light dark;
+  font-family: system-ui;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  /* overflow: hidden; */
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, midnightblue, #010e23);
+  height: 100vh;
+  h1 {
+    font-family: Rosarivo-Regular;
+    font-size: 5vw;
+    opacity: 1;
+    color: 
+    rgba(196, 178, 98, 0.75);
+    mix-blend-mode:subtract;
+    filter: blur(2px);
+    animation-name: blurInHeader;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1.0);
+
+  }
+  p,a {
+    font-family: Rosarivo-Regular;
+    font-size: 2.5vw;
+    max-width: 50vw;
+    color: 
+    rgba(196, 178, 98, 0.75);
+    mix-blend-mode:subtract;
+    filter: blur(1px);
+    animation-name: blurInText;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1.0);
+
+  }
+}
+
+.noise {
+  z-index: 10;
+  position: absolute;
+  pointer-events: none;
+  /* top:-50vh;
+  left:-50vw;
+  height: 200vh;
+  width: 200vw; */
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+   background: radial-gradient(
+                 circle at 50% 50%,
+                 rgba(0, 0, 0, 0.75),
+                 rgba(0, 0, 0, 0)
+     );
+     /* url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
+  filter: contrast(145%) brightness(650%) invert(100%); 
+  /* transform: rotate(45deg); */
+  mix-blend-mode: screen;
+  animation-name: twinkleStars;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+}
+
+
+}
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+@font-face {
+  font-family: Alegreya-Regular; 
+  src: url(../assets/font/Alegreya-Regular.ttf); 
+}
+
+@font-face {
+  font-family: Rosarivo-Regular; 
+  src: url(../assets/font/Rosarivo-Regular.ttf); 
+}
+
+@keyframes rotateNoise {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+@keyframes blurInHeader {
+  from {
+    filter: blur(10px);
+    scale: 1.1;
+    }
+  to {
+    filter: blur(2px);
+    scale: 1;}
+}
+
+@keyframes blurInText {
+  from {
+    filter: blur(10px);
+    scale: 1.1;
+    }
+  to {
+    filter: blur(1px);
+    scale: 1;}
+}
+
+@keyframes twinkleStars {
+  from {  filter: contrast(135%) brightness(650%) invert(100%); 
+}
+  to {  filter: contrast(155%) brightness(550%) invert(100%); 
+}
+}
