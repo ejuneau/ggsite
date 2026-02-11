@@ -1,0 +1,14 @@
+        <svg viewBox='0 3 70 50' xmlns='http://www.w3.org/2000/svg' className="noise">
+            <filter id='noiseFilter'>
+                <feTurbulence 
+                    type='fractalNoise' 
+                    baseFrequency='0.65' 
+                    numOctaves='3' 
+                    stitchTiles='stitch'/>
+            </filter>
+        
+        <rect width='100vw' height='100vh' filter='url(#noiseFilter)'> 
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 35 25" to="0 35 25" dur="180s" additive="sum" repeatCount="indefinite" />
+
+        </rect>
+        </svg>

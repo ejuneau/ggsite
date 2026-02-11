@@ -5,12 +5,15 @@ html {
   align-items: center;
   justify-content: center;
   height: 100%;
+  animation: blurInHeader 2s;
+
 
 body {
+  margin: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
-  /* overflow: hidden; */
+  overflow: hidden;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, midnightblue, #010e23);
@@ -20,12 +23,11 @@ body {
     font-size: 5vw;
     opacity: 1;
     color: 
-    rgba(196, 178, 98, 0.75);
-    mix-blend-mode:subtract;
+    rgb(255, 216, 132);
+    mix-blend-mode:screen; 
     filter: blur(2px);
-    animation-name: blurInHeader;
-    animation-duration: 2s;
-    animation-timing-function: cubic-bezier(0, 0, 0.58, 1.0);
+    animation: shakeRev 60s ease-in-out infinite alternate;
+
 
   }
   p,a {
@@ -33,14 +35,10 @@ body {
     font-size: 2.5vw;
     max-width: 50vw;
     color: 
-    rgba(196, 178, 98, 0.75);
-    mix-blend-mode:subtract;
+    rgb(255, 216, 132);
+    mix-blend-mode:screen;
     filter: blur(1px);
-    animation-name: blurInText;
-    animation-duration: 2s;
-    animation-timing-function: cubic-bezier(0, 0, 0.58, 1.0);
-
-  }
+    animation: shakeRev 60s ease-in-out infinite alternate;  }
 }
 
 .noise {
@@ -52,24 +50,23 @@ body {
   height: 200vh;
   width: 200vw; */
   overflow: hidden;
+  opacity: 0.9;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
    background: radial-gradient(
                  circle at 50% 50%,
                  rgba(0, 0, 0, 0.75),
                  rgba(0, 0, 0, 0)
-     );
-     /* url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
-  filter: contrast(145%) brightness(650%) invert(100%); 
+     ),
+     url(noise.svg);
+    background-position: center;
+    background-size: cover;
+  filter: contrast(145%) brightness(550%) invert(100%); 
   /* transform: rotate(45deg); */
   mix-blend-mode: screen;
-  animation-name: twinkleStars;
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  animation: twinkleStars 3s ease-in-out infinite alternate, shake 60s ease-in-out infinite alternate;
 
 }
 
@@ -82,8 +79,26 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
+
+  .button{
+    padding: 1em 2.5em;
+    border-radius: 15px;
+    /* background: midnightblue; */
+    color: white;
+    mix-blend-mode: difference;
+    opacity: 1;
+    text-decoration: none;
+    
+
+  }
+
+.button:hover, .button:focus, .button:active {
+  color: white;
+  text-decoration: none;
+}
 
 @font-face {
   font-family: Alegreya-Regular; 
@@ -106,7 +121,8 @@ body {
     }
   to {
     filter: blur(2px);
-    scale: 1;}
+    scale: 1;
+  }
 }
 
 @keyframes blurInText {
@@ -116,12 +132,64 @@ body {
     }
   to {
     filter: blur(1px);
-    scale: 1;}
+    scale: 1;
+  }
 }
 
 @keyframes twinkleStars {
-  from {  filter: contrast(135%) brightness(650%) invert(100%); 
+  from {  filter: contrast(135%) brightness(680%) invert(100%); 
 }
-  to {  filter: contrast(155%) brightness(550%) invert(100%); 
+  to {  filter: contrast(125%) brightness(800%) invert(100%); 
 }
+}
+
+@media only screen and (max-width: 600px) {
+
+  html{
+    body{
+      .noise {
+        background: none;
+      }
+    h1 {
+      font-size: 14vw;
+      filter: blur(0.2px)
+    }
+    p, a {
+      font-size: 6vw;
+    }
+    }
+
+
+
+  }
+}
+
+
+
+@keyframes shake {
+  0% { transform: translate(0.5vh, 0.5vw) scale(1.1) rotate(0deg); }
+  10% { transform: translate(-0.5vh, -1vw) scale(1.0)  rotate(1deg)}
+  20% { transform: translate(-1.5vh, 0vw) scale(1.0)  rotate(-1deg);}
+  30% { transform: translate(1.5vh, 1vw) scale(0.9)  rotate(0deg);}
+  40% { transform: translate(0.5vh, -0.5vw) scale(1.0)  rotate(-1deg);}
+  50% { transform: translate(-0.5vh, 1vw) scale(0.8)  rotate(1deg)}
+  60% { transform: translate(-1.5vh, 0.5vw) scale(1.0)  rotate(0deg);}
+  70% { transform: translate(1.5vh, 0.5vw) scale(1.0)  rotate(1deg)}
+  80% { transform: translate(-0.5vh, -0.5vw) scale(1.0)  rotate(-1deg);}
+  90% { transform: translate(0.5vh, 1vw) scale(1.0) rotate(0deg);}
+  100% { transform: translate(0.5vh, -1vw) scale(1.0)  rotate(1deg)}
+}
+
+@keyframes shakeRev {
+  0% { transform: translate(-0.5vh, -0.5vw) scale(0.99) rotate(0deg); filter: blur(2px); }
+  10% { transform: translate(0.5vh, 1vw) scale(1.0) rotate(-0.5deg); filter:blur(1px) }
+  20% { transform: translate(1.5vh, 0vw) scale(1.0)  rotate(0.5deg); filter:blur(1px)}
+  30% { transform: translate(-1.5vh, -1vw) scale(1.01)  rotate(0deg); filter:blur(3px) }
+  40% { transform: translate(-0.5vh, 0.5vw) scale(1.0) rotate(0.5deg); filter:blur(1px)}
+  50% { transform: translate(0.5vh, -1vw) scale(1.02) rotate(-0.5deg);  filter:blur(1px)}
+  60% { transform: translate(1.5vh, -0.5vw) scale(1.0)  rotate(0deg); filter:blur(1px)}
+  70% { transform: translate(-1.5vh, -0.5vw) scale(1.0)  rotate(-0.5deg); filter:blur(1px)}
+  80% { transform: translate(0.5vh, 0.5vw) scale(1.0)  rotate(0.5deg); filter:blur(1px)}
+  90% { transform: translate(-0.5vh, -1vw) scale(1.0)  rotate(0deg); filter:blur(2px)}
+  100% { transform: translate(-0.5vh, 1vw) scale(1.0)  rotate(-0.5deg) ; filter:blur(1px)}
 }
